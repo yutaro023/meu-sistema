@@ -1,0 +1,18 @@
+# a) Define a imagem base
+FROM python:3.11-slim
+
+# b) Define o diretório de trabalho dentro do container
+WORKDIR /app
+
+# c) Copia o arquivo de dependências e as instala (sem armazenar cache do pip para manter a imagem leve)
+COPY requirements.txt .
+RUN pip install --no-cache-dir -r requirements.txt
+
+# d) Copia o restante dos arquivos da aplicação para /app
+COPY . .
+
+# e) Documenta que o container escuta na porta 5000
+EXPOSE 5000
+
+# f) Comando executado ao iniciar o container
+CMD ["python", "app.py"]

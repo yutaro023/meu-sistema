@@ -1,0 +1,17 @@
+#construir imagem
+docker build -t meu-sistema:1.0 .
+
+#cria e executa o container sistema-web em segundo plano
+docker run -d --name sistema-web -p 8080:5000 meu-sistema:1.0
+
+#lista os container em execução
+docker ps
+
+#Visualizar os logs do container sistema-web 
+docker logs sistema-web
+
+#Parar o container sistema-web
+docker rm sistema-web
+
+#Remover o container sistema-web após parado:
+docker rm sistema-web
